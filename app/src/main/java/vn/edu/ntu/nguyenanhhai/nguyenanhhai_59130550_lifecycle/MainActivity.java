@@ -4,15 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+public class MainActivity extends AppCompatActivity {
+  TextView timeText;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     Log.d("LifeCycle", "onCreate");
+    timeText = findViewById(R.id.time);
+    SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    timeText.setText(formatDate.format(new Date()));
     Toast.makeText(getApplicationContext(), "onCreate", Toast.LENGTH_SHORT).show();
   }
 
@@ -48,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
   protected void onRestart() {
     super.onRestart();
     Log.d("LifeCycle", "onRestart");
+    // not find timeText
+    SimpleDateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    timeText.setText(formatDate.format(new Date()));
     Toast.makeText(getApplicationContext(), "onRestart", Toast.LENGTH_SHORT).show();
   }
 
